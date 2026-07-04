@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para Luu ❤️</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <button class="menu-btn active" onclick="mostrar('inicio', this)">
+          💖 Inicio
+        </button>
+
+        <button class="menu-btn" onclick="mostrar('recuerdos', this)">
+          🌸 Cosas que me recuerdan a ti
+        </button>
+
+        <button class="menu-btn" onclick="mostrar('mensaje', this)">
+          ✉️ Mensaje
+        </button>
+        <button class="menu-btn" onclick="mostrar('juego', this)">
+          🖤 Atrapa a Badtz-Maru
+        </button>
+        <button class="menu-btn" onclick="mostrar('quiz', this)">
+          🎲 ¿Qué tan bien me conoces?
+        </button>
+        <button class="menu-btn" onclick="mostrar('coleccion', this)">
+          🖤 Colección Badtz
+        </button>
+      </aside>
+
+      <!-- ================= CONTENT ================= -->
+      <main class="content">
+        <!-- ================= INICIO ================= -->
+        <section id="inicio" class="pagina activa">
+          <img src="images/foto.jpeg" alt="Nuestra foto" class="foto" />
+
+          <h1>Para Luu :></h1>
+
+          <p class="mensaje">
+            Perdón si soy medio lento para comprender cuando algo te preocupa, o
+            cuando simplemente estás teniendo un mal día. No soy el mejor dando
+            ánimos, pero quería intentar hacer algo diferente.
+          </p>
+
+          <!-- BOTONES INTERNOS (ya no links sueltos) -->
+          <div class="botones-internos">
+            <button
+              onclick="document.getElementById('gustas').scrollIntoView({behavior:'smooth'})"
+            >
+              💖 Cosas que me gustan de ti
+            </button>
+
+            <button
+              onclick="document.getElementById('recuerda').scrollIntoView({behavior:'smooth'})"
+            >
+              🌸 Algo que quiero que recuerdes
+            </button>
+
+            <button
+              onclick="document.getElementById('secreto').scrollIntoView({behavior:'smooth'})"
+            >
+              ✨ Botón secreto
+            </button>
+          </div>
+
+          <div class="carta">
+            <p>Gracias por todo :b</p>
+
+            <p>
+              No soy muy bueno dando ánimos. Muchas veces termino haciendo
+              chistes porque es la forma que conozco de intentar sacarte una
+              sonrisa.
+            </p>
+
+            <p>
+              Eres la persona que más me ha cautivado y también la que más me ha
+              hecho sentir vulnerable.
+            </p>
+
+            <p class="destacado">
+              Es la primera vez que hago algo así, pero quería que supieras que
+              siempre puedes contar conmigo.
+            </p>
+          </div>
+          <section class="seccion-musica">
+            <h2>🎵 Una canción que me recuerda a ti</h2>
+
+            <p>Esto ya te lo he dicho pero está canción me recuerda a tí</p>
+
+            <audio id="musica" loop>
+              <source src="audio/cancion.mp3" type="audio/mpeg" />
+            </audio>
+
+            <button class="boton-musica" onclick="toggleMusica()">
+              <span class="icono">🎵</span>
+              <span id="textoMusica">
+                Escuchar una canción que me recuerda a ti
+              </span>
+            </button>
+          </section>
+          <section id="gustas" class="seccion">
+            <h2>💖 Cosas que me gustan de ti</h2>
+
+            <div class="lista">
+              <div>✨ Cuando eres directa con las cosas</div>
+              <div>✨ Tus ojos marrones</div>
+              <div>✨ Cuando te quedas hablando sin parar</div>
+              <div>✨ Lo fuerte que puedes llegar a ser</div>
+              <div>✨ Lo comprensiva que eres conmigo</div>
+              <div>✨ Tú en general :p</div>
+            </div>
+          </section>
+
+          <section id="recuerda" class="seccion">
+            <h2>🌸 Algo que quiero que recuerdes</h2>
+
+            <p>No tienes que estar feliz todos los días.</p>
+            <p>No tienes que cargar con todo sola.</p>
+            <p>Está bien cansarse o equivocarse.</p>
+
+            <p class="destacado">Un mal día no cambia lo increíble que eres.</p>
+          </section>
+
+          <section id="secreto" class="seccion">
+            <h2>✨ Botón secreto</h2>
+
+            <button onclick="mostrarMensaje()">No presiones aquí 👀</button>
+
+            <div id="sorpresa"></div>
+          </section>
+
+          <p class="firma">
+            Con cariño,<br />
+            Jero :>
+          </p>
+        </section>
+
+        <!-- ================= RECUERDOS ================= -->
+        <section id="recuerdos" class="pagina">
+          <h2>🌸 Cosas que me recuerdan a ti</h2>
+
+          <div class="tarjeta">
+            <h3>💄 Maquillaje</h3>
+            <p>Ahora cada vez que veo maquillaje me acuerdo de ti.</p>
+          </div>
+
+          <div class="tarjeta">
+            <h3>🖤 Badtz-Maru</h3>
+            <p>Imposible verlo sin pensar en ti.</p>
+          </div>
+
+          <div class="tarjeta">
+            <h3>🤍 Cinnamoroll</h3>
+            <p>Otro personaje que ya es “tú” en mi cabeza.</p>
+          </div>
+
+          <div class="tarjeta">
+            <h3>🎀 Monster High</h3>
+            <p>Antes normal, ahora totalmente asociado a ti.</p>
+          </div>
+
+          <div class="tarjeta">
+            <h3>🎮 Roblox</h3>
+            <p>Siempre termina recordándome a ti.</p>
+          </div>
+        </section>
+
+        <!-- ================= MENSAJE ================= -->
+        <section id="mensaje" class="pagina">
+          <h2>✉️ Algo que quería decirte</h2>
+
+          <p>A veces me acuerdo de la primera vez que salimos.</p>
+          <p>Estaba bastante nervioso.</p>
+          <p>Creo que los dos lo estábamos.</p>
+          <p>Hablamos hasta que se hizo de noche.</p>
+
+          <p class="destacado">
+            Fue de esos momentos donde todo se sentía fácil sin razón.
+          </p>
+
+          <p>Y creo que eso es lo que más me gusta recordar.</p>
+          <img src="images/descargar.jpeg" class="foto-mensaje" />
+        </section>
+        <section id="juego" class="pagina">
+          <h2>🖤 Atrapa a Badtz-Maru</h2>
+
+          <p>Atrapa a Badtz-Maru 10 veces para desbloquear una sorpresa.</p>
+
+          <div class="marcador">Puntos: <span id="puntos">0</span>/10</div>
+
+          <div id="area-juego">
+            <section>
+              <img id="badtz" src="images/badtz.png" alt="Badtz-Maru" />
+            </section>
+          </div>
+
+          <div id="premio"></div>
+        </section>
+        <section id="quiz" class="pagina">
+          <h2>🎲 ¿Qué tan bien me conoces?</h2>
+
+          <div class="quiz-container">
+            <div class="pregunta">
+              <p>1. ¿Cuál es mi color favorito?</p>
+
+              <label><input type="radio" name="p1" value="0" /> Azul</label>
+              <label><input type="radio" name="p1" value="0" /> Negro</label>
+              <label><input type="radio" name="p1" value="1" /> Rosado</label>
+              <label><input type="radio" name="p1" value="0" /> Verde</label>
+            </div>
+
+            <div class="pregunta">
+              <p>2. ¿Cuál es mi comida favorita?</p>
+
+              <label><input type="radio" name="p2" value="0" /> Pizza</label>
+              <label
+                ><input type="radio" name="p2" value="0" /> Hamburguesa</label
+              >
+              <label><input type="radio" name="p2" value="1" /> Chaufa</label>
+              <label
+                ><input type="radio" name="p2" value="0" /> Tallarines</label
+              >
+            </div>
+
+            <div class="pregunta">
+              <p>3. ¿Cuándo es mi cumpleaños?</p>
+
+              <label
+                ><input type="radio" name="p3" value="0" /> 17 de octubre</label
+              >
+              <label
+                ><input type="radio" name="p3" value="1" /> 17 de
+                noviembre</label
+              >
+              <label
+                ><input type="radio" name="p3" value="0" /> 27 de
+                noviembre</label
+              >
+              <label
+                ><input type="radio" name="p3" value="0" /> 7 de
+                noviembre</label
+              >
+            </div>
+
+            <div class="pregunta">
+              <p>4. ¿Dónde nos vimos por primera vez?</p>
+
+              <label
+                ><input type="radio" name="p4" value="0" /> Plaza San
+                Miguel</label
+              >
+              <label
+                ><input type="radio" name="p4" value="1" /> Parque de la
+                Amistad</label
+              >
+              <label
+                ><input type="radio" name="p4" value="0" /> Jockey Plaza</label
+              >
+              <label
+                ><input type="radio" name="p4" value="0" /> Campo de
+                Marte</label
+              >
+            </div>
+
+            <div class="pregunta">
+              <p>5. ¿Cuál es mi franquicia favorita?</p>
+
+              <label><input type="radio" name="p5" value="0" /> Roblox</label>
+              <label><input type="radio" name="p5" value="1" /> Pokémon</label>
+              <label
+                ><input type="radio" name="p5" value="0" /> Monster High</label
+              >
+              <label><input type="radio" name="p5" value="0" /> Sanrio</label>
+            </div>
+
+            <button class="btn-quiz" onclick="corregirQuiz()">
+              Ver resultado 💖
+            </button>
+
+            <div id="resultadoQuiz"></div>
+          </div>
+        </section>
+        <section id="coleccion" class="pagina">
+          <h2>🖤 Colección de Badtz-Maru</h2>
+
+          <div class="coleccion-grid">
+            <div class="badtz-card desbloqueado">
+              <img src="images/badtz-normal.png" />
+              <h3>Badtz Normal</h3>
+              <p>Siempre disponible.</p>
+            </div>
+
+            <div id="badtzPirata" class="badtz-card bloqueado">
+              <img src="images/badtz-pirata.png" />
+              <h3>Badtz Pirata</h3>
+              <p>Completa el minijuego.</p>
+            </div>
+
+            <div id="badtzRockero" class="badtz-card bloqueado">
+              <img src="images/badtz-rockero.png" />
+              <h3>Badtz Rockero</h3>
+              <p>Consigue 5/5 en el quiz.</p>
+            </div>
+
+            <div id="badtzVampiro" class="badtz-card bloqueado">
+              <img src="images/badtz-vampiro.png" />
+              <h3>Badtz Vampiro</h3>
+              <p>Encuentra el secreto.</p>
+            </div>
+
+            <div id="badtzMusica" class="badtz-card bloqueado">
+              <img src="images/badtz-musica.png" />
+              <h3>Badtz Melómano</h3>
+              <p>Escucha la canción.</p>
+            </div>
+          </div>
+        </section>
+        <div id="overlay-badtz" class="overlay-badtz">
+          <div class="popup-badtz">
+            <img id="popup-img" src="" alt="Badtz" />
+
+            <h2>🖤 Nuevo Badtz desbloqueado</h2>
+
+            <p id="popup-nombre"></p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,877 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ffd6e7, #ffeaf2, #fff9fc);
+  min-height: 100vh;
+  color: #444;
+  overflow-x: hidden;
+}
+
+/* =========================
+   LAYOUT GENERAL
+========================= */
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR (OCULTABLE TOTAL)
+========================= */
+
+.sidebar {
+  width: 300px;
+  min-height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+
+  border-right: 2px solid rgba(255, 182, 193, 0.4);
+
+  padding: 30px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.35s ease;
+}
+
+/* estado oculto */
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+/* =========================
+   BOTÓN TOGGLE (☰)
+========================= */
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  z-index: 10000; /* AGREGAR */
+
+  background: #ff5d8f;
+  color: white;
+
+  border: none;
+  padding: 12px 14px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 1.2rem;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+}
+/* =========================
+   BOTONES DEL MENÚ
+========================= */
+
+.menu-btn {
+  background: transparent;
+
+  border: 2px solid #ffb6c1;
+
+  color: #ff5d8f;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+/* hover */
+.menu-btn:hover {
+  background: rgba(255, 182, 193, 0.25);
+  transform: translateX(6px);
+  border-color: #ff5d8f;
+}
+
+/* activo */
+.menu-btn.active {
+  background: #ff5d8f;
+  color: white;
+
+  border-color: #ff5d8f;
+
+  box-shadow: 0 10px 25px rgba(255, 93, 143, 0.35);
+
+  transform: translateX(6px);
+}
+
+/* click */
+.menu-btn:active {
+  transform: scale(0.98) translateX(6px);
+}
+
+/* =========================
+   EFECTO COLAPSADO
+========================= */
+
+/* reduce texto visualmente */
+.sidebar.collapsed .menu-btn {
+  font-size: 0;
+  padding: 14px 0;
+}
+
+/* muestra solo íconos (emoji queda visible) */
+.sidebar.collapsed .menu-btn {
+  text-align: center;
+}
+
+/* opcional: ocultar efecto de movimiento */
+.sidebar.collapsed .menu-btn:hover {
+  transform: none;
+}
+/* =========================
+   CONTENIDO
+========================= */
+
+.content {
+  flex: 1;
+
+  padding: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  overflow-y: auto;
+}
+
+/* cada página */
+.pagina {
+  width: 100%;
+  max-width: 900px;
+
+  display: none;
+
+  animation: fadeUp 0.6s ease;
+}
+
+.pagina.activa {
+  display: block;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* =========================
+   FOTO
+========================= */
+
+.foto {
+  width: 240px;
+  height: 240px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 8px solid white;
+
+  display: block;
+  margin: 0 auto 25px auto;
+
+  box-shadow: 0 15px 30px rgba(255, 93, 143, 0.25);
+
+  animation: flotar 4s ease-in-out infinite;
+}
+.foto-mensaje {
+  width: 100%;
+  max-width: 450px;
+
+  display: block;
+  margin: 20px auto;
+
+  border-radius: 20px;
+
+  box-shadow: 0 15px 30px rgba(255, 93, 143, 0.25);
+
+  object-fit: cover;
+
+  transition: transform 0.3s ease;
+}
+
+.foto-mensaje:hover {
+  transform: scale(1.03);
+}
+/* =========================
+   TEXTOS
+========================= */
+
+h1 {
+  text-align: center;
+  color: #ff5d8f;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #ff5d8f;
+  margin-bottom: 25px;
+}
+
+h3 {
+  color: #ff5d8f;
+  margin-bottom: 10px;
+}
+
+p {
+  line-height: 1.9;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.mensaje {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+/* =========================
+   BOTÓN MÚSICA
+========================= */
+.seccion-musica {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 40px auto;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  border: 1px solid rgba(255, 182, 193, 0.3);
+
+  border-radius: 25px;
+
+  backdrop-filter: blur(8px);
+}
+.boton-musica {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 24px;
+
+  border: 2px solid #ffb6c1;
+  border-radius: 50px;
+
+  background: linear-gradient(135deg, #fff8fb, #ffeaf2);
+
+  color: #ff5d8f;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 5px 15px rgba(255, 93, 143, 0.12);
+}
+
+.boton-musica:hover {
+  transform: translateY(-3px);
+
+  background: linear-gradient(135deg, #ffedf5, #ffd6e7);
+
+  box-shadow: 0 10px 25px rgba(255, 93, 143, 0.2);
+}
+
+.boton-musica .icono {
+  font-size: 1.2rem;
+}
+
+.boton-musica.reproduciendo {
+  background: linear-gradient(135deg, #ff9ebb, #ff7ca7);
+
+  color: white;
+
+  border-color: #ff7ca7;
+}
+/* =========================
+   BOTONES INTERNOS (los 3 que mencionaste)
+========================= */
+
+.botones-internos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+
+  margin: 25px 0 40px 0;
+}
+
+.botones-internos button {
+  background: transparent;
+
+  border: 2px solid #ffb6c1;
+
+  color: #ff5d8f;
+
+  padding: 12px 16px;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  font-weight: 500;
+}
+
+.botones-internos button:hover {
+  background: #ff5d8f;
+  color: white;
+
+  transform: translateY(-3px);
+}
+
+/* =========================
+   CARTA PRINCIPAL
+========================= */
+
+.carta {
+  background: white;
+
+  padding: 35px;
+
+  border-radius: 25px;
+
+  border: 1px solid rgba(255, 182, 193, 0.3);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+  margin-bottom: 40px;
+}
+
+/* =========================
+   LISTA
+========================= */
+
+.lista {
+  display: grid;
+  gap: 12px;
+}
+
+.lista div {
+  background: #fff4f7;
+
+  padding: 15px;
+
+  border-radius: 15px;
+
+  border: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+/* =========================
+   TARJETAS RECUERDOS
+========================= */
+
+.tarjeta {
+  background: white;
+
+  padding: 25px;
+
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255, 182, 193, 0.25);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   BOTÓN SECRETO
+========================= */
+#secreto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button {
+  font-family: inherit;
+}
+
+#secreto button {
+  background: transparent;
+
+  border: 2px solid #ff5d8f;
+
+  color: #ff5d8f;
+
+  padding: 14px 26px;
+
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  font-weight: 500;
+}
+
+#secreto button:hover {
+  background: #ff5d8f;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* =========================
+   SORPRESA
+========================= */
+
+#sorpresa {
+  margin-top: 20px;
+  min-height: 40px;
+
+  text-align: center;
+
+  font-weight: 600;
+  color: #ff4f84;
+}
+
+/* =========================
+   FIRMA
+========================= */
+
+.firma {
+  margin-top: 60px;
+  text-align: center;
+  color: #ff5d8f;
+  font-weight: 600;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .contenedor {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.menu-btn {
+  font-size: 0.85rem;
+  padding: 10px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.foto {
+  width: 180px;
+  height: 180px;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+/* =========================
+   JUEGO BADTZ-MARU
+========================= */
+
+/* PAGINA DEL JUEGO */
+
+#juego {
+  width: 100%;
+  text-align: center;
+}
+
+#juego h2 {
+  margin-bottom: 10px;
+}
+
+#juego p {
+  margin-bottom: 15px;
+}
+
+.marcador {
+  margin-bottom: 15px;
+}
+#juego.activa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* AREA DEL JUEGO */
+
+#area-juego {
+  position: relative;
+
+  width: 800px;
+  max-width: 90%;
+
+  height: 450px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  border-radius: 25px;
+
+  border: 2px solid #ffd6e7;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* IMAGEN */
+
+#badtz {
+  position: absolute;
+
+  width: 90px;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  transition: transform 0.2s;
+}
+
+#badtz:hover {
+  transform: scale(1.1);
+}
+
+/* MENSAJE FINAL */
+
+#premio {
+  margin-top: 20px;
+
+  text-align: center;
+
+  color: #ff5d8f;
+
+  font-weight: 600;
+}
+#juego.pagina.activa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pregunta {
+  background: white;
+
+  padding: 25px;
+
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(255, 182, 193, 0.3);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.pregunta p {
+  font-weight: 600;
+  color: #ff5d8f;
+  margin-bottom: 15px;
+}
+
+.pregunta label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+}
+
+.btn-quiz {
+  display: block;
+
+  margin: 30px auto;
+
+  padding: 15px 25px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #ff5d8f;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  transition: 0.3s;
+}
+
+.btn-quiz:hover {
+  transform: scale(1.05);
+}
+
+#resultadoQuiz {
+  margin-top: 25px;
+
+  text-align: center;
+
+  font-size: 1.2rem;
+
+  font-weight: 600;
+
+  color: #ff5d8f;
+}
+/*=========================
+        Coleccion Badtz
+===========================*/
+.coleccion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.badtz-card {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.badtz-card img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+}
+
+.bloqueado {
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+.desbloqueado {
+  opacity: 1;
+  filter: none;
+}
+/* =========================
+   POPUP BADTZ DESBLOQUEADO
+========================= */
+
+.overlay-badtz {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  backdrop-filter: blur(6px);
+
+  z-index: 999999;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all 0.4s ease;
+}
+
+.overlay-badtz.mostrar {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-badtz {
+  background: white;
+
+  width: 90%;
+  max-width: 450px;
+
+  padding: 35px;
+
+  border-radius: 30px;
+
+  text-align: center;
+
+  border: 4px solid #ffb6c1;
+
+  box-shadow: 0 0 40px rgba(255, 93, 143, 0.35), 0 20px 50px rgba(0, 0, 0, 0.2);
+
+  transform: scale(0.7);
+
+  transition: transform 0.4s ease;
+}
+
+.overlay-badtz.mostrar .popup-badtz {
+  transform: scale(1);
+}
+
+.popup-badtz img {
+  width: 220px;
+  height: 220px;
+
+  object-fit: contain;
+
+  margin-bottom: 20px;
+
+  animation: flotarPopup 2.5s ease-in-out infinite;
+}
+
+.popup-badtz h2 {
+  color: #ff5d8f;
+
+  margin-bottom: 15px;
+
+  font-size: 1.8rem;
+}
+
+#popup-nombre {
+  color: #444;
+
+  font-size: 1.2rem;
+
+  font-weight: 600;
+}
+
+/* DESTELLO ROSADO */
+
+.popup-badtz::before {
+  content: "✨";
+
+  position: absolute;
+
+  top: 15px;
+  left: 20px;
+
+  font-size: 2rem;
+}
+
+.popup-badtz::after {
+  content: "✨";
+
+  position: absolute;
+
+  top: 15px;
+  right: 20px;
+
+  font-size: 2rem;
+}
+
+/* ANIMACIÓN */
+
+@keyframes flotarPopup {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
