@@ -1,2 +1,2 @@
-# Lucia2.0
-Created with CodeSandbox
+Esto es para Lucia
+La persona más bonita de todo el Hiperveso
