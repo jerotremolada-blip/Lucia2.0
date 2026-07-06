@@ -38,6 +38,14 @@
         <button class="menu-btn" onclick="mostrar('coleccion', this)">
           🖤 Colección Badtz
         </button>
+        <button
+          id="btnSorpresaFinal"
+          class="menu-btn"
+          style="display: none"
+          onclick="mostrar('sorpresaFinal', this)"
+        >
+          ❤️ Sorpresa
+        </button>
       </aside>
 
       <!-- ================= CONTENT ================= -->
@@ -61,7 +69,18 @@
             >
               💖 Cosas que me gustan de ti
             </button>
-
+            <div
+              class="badtz-escondido badtz-leyendo"
+              onclick="encontrarBadtz(
+              'leyendo',
+              'badtzLeyendo',
+              '📚 Badtz Leyendo',
+              'images/badtz-leyendo.png',
+              this
+            )"
+            >
+              <img src="images/badtz-leyendo.png" />
+            </div>
             <button
               onclick="document.getElementById('recuerda').scrollIntoView({behavior:'smooth'})"
             >
@@ -155,7 +174,23 @@
             <h3>💄 Maquillaje</h3>
             <p>Ahora cada vez que veo maquillaje me acuerdo de ti.</p>
           </div>
+          <div class="tarjeta tarjeta-con-badtz">
+            <div
+              class="badtz-escondido badtz-cupido"
+              onclick="encontrarBadtz(
+                'cupido',
+                'badtzCupido',
+                '💘 Badtz Cupido',
+                'images/badtz-cupido.png',
+                this
+              )"
+            >
+              <img src="images/badtz-cupido.png" />
+            </div>
 
+            <h3>🖤 Badtz-Maru</h3>
+            <p>Imposible verlo sin pensar en ti.</p>
+          </div>
           <div class="tarjeta">
             <h3>🖤 Badtz-Maru</h3>
             <p>Imposible verlo sin pensar en ti.</p>
@@ -185,7 +220,18 @@
           <p>Estaba bastante nervioso.</p>
           <p>Creo que los dos lo estábamos.</p>
           <p>Hablamos hasta que se hizo de noche.</p>
-
+          <div
+            class="badtz-escondido badtz-dormido"
+            onclick="encontrarBadtz(
+            'dormido',
+            'badtzDormido',
+            '😴 Badtz Dormido',
+            'images/badtz-dormido.png',
+            this
+          )"
+          >
+            <img src="images/badtz-dormido.png" />
+          </div>
           <p class="destacado">
             Fue de esos momentos donde todo se sentía fácil sin razón.
           </p>
@@ -220,7 +266,18 @@
               <label><input type="radio" name="p1" value="1" /> Rosado</label>
               <label><input type="radio" name="p1" value="0" /> Verde</label>
             </div>
-
+            <div
+              class="badtz-escondido badtz-veraniego"
+              onclick="encontrarBadtz(
+              'veraniego',
+              'badtzVeraniego',
+              '🌴 Badtz Veraniego',
+              'images/badtz-veraniego.png',
+              this
+            )"
+            >
+              <img src="images/badtz-veraniego.png" />
+            </div>
             <div class="pregunta">
               <p>2. ¿Cuál es mi comida favorita?</p>
 
@@ -296,7 +353,20 @@
           <h2>🖤 Colección de Badtz-Maru</h2>
 
           <div class="coleccion-grid">
-            <div class="badtz-card desbloqueado">
+            <div class="badtz-card desbloqueado tarjeta-con-badtz">
+              <div
+                class="badtz-escondido badtz-mono"
+                onclick="encontrarBadtz(
+                  'mono',
+                  'badtzMono',
+                  '🎀 Badtz con Moño',
+                  'images/badtz-mono.png',
+                  this
+                )"
+              >
+                <img src="images/badtz-mono.png" />
+              </div>
+
               <img src="images/badtz-normal.png" />
               <h3>Badtz Normal</h3>
               <p>Siempre disponible.</p>
@@ -325,6 +395,35 @@
               <h3>Badtz Melómano</h3>
               <p>Escucha la canción.</p>
             </div>
+            <div id="badtzLeyendo" class="badtz-card bloqueado">
+              <img src="images/badtz-leyendo.png" />
+              <h3>Badtz Leyendo</h3>
+              <p>Lo encontraste escondido.</p>
+            </div>
+
+            <div id="badtzCupido" class="badtz-card bloqueado">
+              <img src="images/badtz-cupido.png" />
+              <h3>Badtz Cupido</h3>
+              <p>Lo encontraste escondido.</p>
+            </div>
+
+            <div id="badtzVeraniego" class="badtz-card bloqueado">
+              <img src="images/badtz-veraniego.png" />
+              <h3>Badtz Veraniego</h3>
+              <p>Lo encontraste escondido.</p>
+            </div>
+
+            <div id="badtzDormido" class="badtz-card bloqueado">
+              <img src="images/badtz-dormido.png" />
+              <h3>Badtz Dormido</h3>
+              <p>Lo encontraste escondido.</p>
+            </div>
+
+            <div id="badtzMono" class="badtz-card bloqueado">
+              <img src="images/badtz-mono.png" />
+              <h3>Badtz con Moño</h3>
+              <p>Lo encontraste escondido.</p>
+            </div>
           </div>
         </section>
         <div id="overlay-badtz" class="overlay-badtz">
@@ -336,6 +435,29 @@
             <p id="popup-nombre"></p>
           </div>
         </div>
+        <section id="sorpresaFinal" class="pagina">
+          <h2>❤️ Sorpresa</h2>
+
+          <img src="images/dibujo.jpeg" class="foto-sorpresa" />
+
+          <p>
+            Yo solo estaría contigo porque no me veo con alguien más, se que soy
+            malo para asumir lo que quieres, pero aunque me cueste lograrlo
+            siempre quiero estar bien contigo.
+          </p>
+
+          <p>
+            Soy malísimo dibujando pero rescaté el dibujo que te había hecho que
+            pensé que era lost-media.
+          </p>
+
+          <p>
+            Solo quiero que sepas que en serio no podría hablar y estar con
+            nadie más que no seas tú.
+          </p>
+
+          <h1 class="teamo">Te amo ❤️</h1>
+        </section>
       </main>
     </div>
 

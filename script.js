@@ -3,23 +3,57 @@ let coleccion = {
   rockero: false,
   vampiro: false,
   musica: false,
+  leyendo: false,
+  cupido: false,
+  veraniego: false,
+  dormido: false,
+  mono: false,
 };
 function desbloquear(nombre, idElemento, titulo, imagen) {
-  if (coleccion[nombre]) return;
+  const yaDesbloqueado = coleccion[nombre];
 
-  coleccion[nombre] = true;
+  if (!yaDesbloqueado) {
+    coleccion[nombre] = true;
+    localStorage.setItem("coleccionBadtz", JSON.stringify(coleccion));
 
-  localStorage.setItem("coleccionBadtz", JSON.stringify(coleccion));
-
-  const carta = document.getElementById(idElemento);
-
-  if (carta) {
-    carta.classList.remove("bloqueado");
-    carta.classList.add("desbloqueado");
+    const carta = document.getElementById(idElemento);
+    if (carta) {
+      carta.classList.remove("bloqueado");
+      carta.classList.add("desbloqueado");
+    }
   }
 
+  // 🔥 SIEMPRE mostrar popup
   mostrarPopupBadtz(titulo, imagen);
 }
+function encontrarBadtz(nombre, idCarta, titulo, imagen, elemento) {
+  desbloquear(nombre, idCarta, titulo, imagen);
+
+  localStorage.setItem("badtz_" + nombre, "encontrado");
+
+  elemento.style.display = "none";
+
+  verificarColeccionCompleta();
+}
+function verificarColeccionCompleta() {
+  const secretos =
+    coleccion.leyendo &&
+    coleccion.cupido &&
+    coleccion.veraniego &&
+    coleccion.dormido &&
+    coleccion.mono;
+
+  if (secretos) {
+    const boton = document.getElementById("btnSorpresaFinal");
+
+    if (boton) {
+      boton.style.display = "block";
+    }
+
+    localStorage.setItem("sorpresaFinal", "desbloqueada");
+  }
+}
+
 function mostrarPopupBadtz(nombre, imagen) {
   const overlay = document.getElementById("overlay-badtz");
 
@@ -169,6 +203,59 @@ function moverBadtz() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const guardado = localStorage.getItem("coleccionBadtz");
+
+  if (guardado) {
+    const defaults = {
+      pirata: false,
+      rockero: false,
+      vampiro: false,
+      musica: false,
+      leyendo: false,
+      cupido: false,
+      veraniego: false,
+      dormido: false,
+      mono: false,
+    };
+
+    if (guardado) {
+      coleccion = { ...defaults, ...JSON.parse(guardado) };
+    } else {
+      coleccion = defaults;
+    }
+  }
+
+  const mapa = {
+    pirata: "badtzPirata",
+    rockero: "badtzRockero",
+    vampiro: "badtzVampiro",
+    musica: "badtzMusica",
+    leyendo: "badtzLeyendo",
+    cupido: "badtzCupido",
+    veraniego: "badtzVeraniego",
+    dormido: "badtzDormido",
+    mono: "badtzMono",
+  };
+
+  Object.keys(coleccion).forEach((nombre) => {
+    if (coleccion[nombre]) {
+      const carta = document.getElementById(mapa[nombre]);
+
+      if (carta) {
+        carta.classList.remove("bloqueado");
+        carta.classList.add("desbloqueado");
+      }
+    }
+  });
+
+  const boton = document.getElementById("btnSorpresaFinal");
+
+  if (boton) {
+    const desbloqueada =
+      localStorage.getItem("sorpresaFinal") === "desbloqueada";
+    boton.style.display = desbloqueada ? "block" : "none";
+  }
+
   const badtz = document.getElementById("badtz");
 
   if (!badtz) return;
@@ -206,7 +293,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <br><br>
 
         Baldis Basic Meme Tiktok Buscar
-        `;
+      `;
+
       desbloquear(
         "pirata",
         "badtzPirata",
