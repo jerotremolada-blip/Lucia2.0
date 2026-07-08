@@ -10,20 +10,18 @@ let coleccion = {
   mono: false,
 };
 function desbloquear(nombre, idElemento, titulo, imagen) {
-  const yaDesbloqueado = coleccion[nombre];
+  if (coleccion[nombre]) return;
 
-  if (!yaDesbloqueado) {
-    coleccion[nombre] = true;
-    localStorage.setItem("coleccionBadtz", JSON.stringify(coleccion));
+  coleccion[nombre] = true;
+  localStorage.setItem("coleccionBadtz", JSON.stringify(coleccion));
 
-    const carta = document.getElementById(idElemento);
-    if (carta) {
-      carta.classList.remove("bloqueado");
-      carta.classList.add("desbloqueado");
-    }
+  const carta = document.getElementById(idElemento);
+
+  if (carta) {
+    carta.classList.remove("bloqueado");
+    carta.classList.add("desbloqueado");
   }
 
-  // 🔥 SIEMPRE mostrar popup
   mostrarPopupBadtz(titulo, imagen);
 }
 function encontrarBadtz(nombre, idCarta, titulo, imagen, elemento) {
@@ -101,19 +99,21 @@ const mensajes = [
   "Hay recuerdos contigo que me hacen sonreír sin darme cuenta.",
   "Espero que nunca pierdas esa forma tan tuya de ser.",
   "Me gusta cuidar de ti, aunque a veces no sepa muy bien cómo hacerlo.",
-  "Solo quería recordarte que eres importante para mí."
-,
+  "Solo quería recordarte que eres importante para mí.",
 ];
 
 let indice = 0;
 
 function mostrarMensaje() {
-  desbloquear(
-    "vampiro",
-    "badtzVampiro",
-    "🧛 Badtz Vampiro",
-    "images/badtz-vampiro.png"
-  );
+  if (!coleccion.vampiro) {
+    desbloquear(
+      "vampiro",
+      "badtzVampiro",
+      "🧛 Badtz Vampiro",
+      "images/badtz-vampiro.png"
+    );
+  }
+
   const sorpresa = document.getElementById("sorpresa");
 
   sorpresa.innerHTML = mensajes[indice];
@@ -124,7 +124,6 @@ function mostrarMensaje() {
     indice = 0;
   }
 }
-
 /* =========================
    CAMBIO DE PÁGINAS
 ========================= */
@@ -182,12 +181,15 @@ function toggleMusica() {
   if (musica.paused) {
     musica.play();
 
-    desbloquear(
-      "musica",
-      "badtzMusica",
-      "🎵 Badtz Melómano",
-      "images/badtz-musica.png"
-    );
+    if (!coleccion.musica) {
+      desbloquear(
+        "musica",
+        "badtzMusica",
+        "🎵 Badtz Melómano",
+        "images/badtz-musica.png"
+      );
+    }
+
     boton.classList.add("reproduciendo");
 
     texto.textContent = "Pausar música 🎵";
@@ -245,6 +247,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const escondidos = {
+    leyendo: document.querySelector(".badtz-leyendo"),
+    cupido: document.querySelector(".badtz-cupido"),
+    dormido: document.querySelector(".badtz-dormido"),
+    veraniego: document.querySelector(".badtz-veraniego"),
+    mono: document.querySelector(".badtz-mono"),
+  };
+
+  Object.keys(escondidos).forEach((nombre) => {
+    if (coleccion[nombre] && escondidos[nombre]) {
+      escondidos[nombre].style.display = "none";
+      escondidos[nombre].onclick = null;
+    }
+  });
   const mapa = {
     pirata: "badtzPirata",
     rockero: "badtzRockero",
@@ -266,9 +282,12 @@ document.addEventListener("DOMContentLoaded", () => {
         carta.classList.add("desbloqueado");
       }
     }
-    mostrarRecuerdo(0, document.querySelector(".foto-recuerdo"));
   });
 
+  const primera = document.querySelector(".foto-recuerdo");
+  if (primera) {
+    mostrarRecuerdo(0, primera);
+  }
   const boton = document.getElementById("btnSorpresaFinal");
 
   if (boton) {
@@ -366,4 +385,12 @@ function abrirRecuerdo(foto) {
   foto.classList.add("activa");
 
   foto.nextElementSibling.classList.add("activo");
+}
+localStorage.removeItem("coleccionBadtz");
+localStorage.removeItem("sorpresaFinal");
+
+for (const k in localStorage) {
+  if (k.startsWith("badtz_")) {
+    localStorage.removeItem(k);
+  }
 }
