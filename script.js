@@ -72,17 +72,37 @@ function mostrarPopupBadtz(nombre, imagen) {
   }, 7000);
 }
 const mensajes = [
-  "Eres más importante para mí de lo que probablemente imaginas.",
-  "A veces te admiro más de lo que te digo.",
-  "Me gusta cuando me cuentas cosas que te emocionan.",
-  "Me gusta escucharte hablar incluso cuando no entiendo la mitad de lo que dices.",
-  "No tienes que ser fuerte todo el tiempo.",
-  "Espero que seas un poco más amable contigo misma.",
-  "Gracias por confiar en mí.",
-  "Eres bastante increíble, aunque seguramente me discutirías eso.",
-  "Me gusta que seas tú.",
-  "No cambies por encajar en donde no te valoran.",
-  "Tu felicidad me importa.",
+  "Eres una de esas personas que hacen que los días malos pesen un poco menos.",
+  "No siempre sé encontrar las palabras correctas, pero siempre quiero que estés bien.",
+  "Me gusta la tranquilidad que siento cuando hablo contigo.",
+  "Espero que nunca dudes de lo mucho que vales.",
+  "Hay muchas cosas que admiro de ti, incluso las que tú no ves.",
+  "Gracias por dejarme formar parte de tus días.",
+  "Me haces querer ser una mejor persona.",
+  "A veces solo espero que puedas verte con los ojos con los que yo te veo.",
+  "Está bien descansar. No tienes que demostrar nada todo el tiempo.",
+  "Me gusta saber que existes.",
+  "Si algún día sientes que todo va mal, recuerda que eso no cambia la persona que eres.",
+  "No tienes que ser perfecta para que alguien te quiera.",
+  "Espero poder sacarte una sonrisa incluso en tus días más pesados.",
+  "Hay personas que simplemente hacen el mundo un poquito mejor. Tú eres una de ellas.",
+  "Me gusta que puedas ser tú cuando estás conmigo.",
+  "No olvides celebrar también las pequeñas victorias.",
+  "A veces eres mucho más fuerte de lo que crees.",
+  "Quiero que recuerdes que no estás sola.",
+  "Siempre vale la pena escuchar lo que tienes para decir.",
+  "Hay días difíciles, pero también habrá días muy bonitos.",
+  "Me alegra mucho haberte conocido.",
+  "No dejes que un mal momento te haga olvidar todo lo bueno que hay en ti.",
+  "Me gusta cuando te emocionas contando algo que te gusta.",
+  "Ojalá algún día puedas hablarte con la misma paciencia con la que hablas a los demás.",
+  "Verte feliz siempre me alegra un poquito el día.",
+  "Gracias por ser parte de mi vida.",
+  "Hay recuerdos contigo que me hacen sonreír sin darme cuenta.",
+  "Espero que nunca pierdas esa forma tan tuya de ser.",
+  "Me gusta cuidar de ti, aunque a veces no sepa muy bien cómo hacerlo.",
+  "Solo quería recordarte que eres importante para mí."
+,
 ];
 
 let indice = 0;
@@ -246,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         carta.classList.add("desbloqueado");
       }
     }
+    mostrarRecuerdo(0, document.querySelector(".foto-recuerdo"));
   });
 
   const boton = document.getElementById("btnSorpresaFinal");
@@ -332,4 +353,17 @@ function corregirQuiz() {
   } else {
     resultado.innerHTML = "._.";
   }
+}
+function abrirRecuerdo(foto) {
+  document.querySelectorAll(".texto-recuerdo").forEach((texto) => {
+    texto.classList.remove("activo");
+  });
+
+  document.querySelectorAll(".foto-recuerdo").forEach((img) => {
+    img.classList.remove("activa");
+  });
+
+  foto.classList.add("activa");
+
+  foto.nextElementSibling.classList.add("activo");
 }

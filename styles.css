@@ -993,3 +993,84 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+.album {
+  display: flex;
+
+  gap: 35px;
+
+  align-items: flex-start;
+
+  margin-top: 35px;
+}
+
+.galeria {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.foto-recuerdo {
+  width: 240px;
+
+  border-radius: 18px;
+
+  cursor: pointer;
+
+  transition: 0.35s;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.foto-recuerdo:hover {
+  transform: scale(1.04);
+}
+
+.foto-recuerdo.activa {
+  transform: scale(1.08);
+
+  border: 4px solid #ff7ea6;
+}
+
+.panel-recuerdo {
+  flex: 1;
+
+  min-height: 320px;
+
+  background: white;
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  animation: aparecer 0.4s;
+}
+
+.panel-recuerdo h3 {
+  color: #ff5c8a;
+
+  margin-bottom: 20px;
+}
+
+.panel-recuerdo p {
+  font-size: 18px;
+
+  line-height: 1.8;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: none;
+  }
+}
