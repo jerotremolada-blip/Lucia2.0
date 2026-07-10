@@ -395,3 +395,25 @@ for (const k in localStorage) {
     localStorage.removeItem(k);
   }
 }
+function crearPetalo() {
+  const petalo = document.createElement("div");
+
+  petalo.className = "petalo";
+
+  petalo.innerHTML = "🌸";
+
+  petalo.style.left = Math.random() * window.innerWidth + "px";
+
+  petalo.style.fontSize = 18 + Math.random() * 18 + "px";
+
+  petalo.style.animationDuration = 6 + Math.random() * 5 + "s";
+
+  petalo.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+
+  document.body.appendChild(petalo);
+
+  petalo.addEventListener("animationend", () => {
+    petalo.remove();
+  });
+}
+setInterval(crearPetalo, 700);
