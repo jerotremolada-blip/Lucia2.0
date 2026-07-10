@@ -417,4 +417,4 @@ function crearPetalo() {
     petalo.remove();
   });
 }
-setInterval(crearPetalo, 700);
+setInterval(crearPetalo, 1200);
