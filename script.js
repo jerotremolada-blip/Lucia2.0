@@ -285,8 +285,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const primera = document.querySelector(".foto-recuerdo");
+
   if (primera) {
-    mostrarRecuerdo(0, primera);
+    abrirRecuerdo(primera);
   }
   const boton = document.getElementById("btnSorpresaFinal");
 
