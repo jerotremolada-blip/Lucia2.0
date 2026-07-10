@@ -399,8 +399,9 @@ function crearPetalo() {
   const petalo = document.createElement("div");
 
   petalo.className = "petalo";
+  const iconos = ["🖤", "🌙", "✨", "🦇", "🕯️"];
 
-  petalo.innerHTML = "🌸";
+  petalo.innerHTML = iconos[Math.floor(Math.random() * iconos.length)];
 
   petalo.style.left = Math.random() * window.innerWidth + "px";
 
